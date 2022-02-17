@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
     selector:"event-thumbnail",
     template:`
-            <div class="well hoverwell thumbnail">
+            <div [routerLink]="['/events',childEvent.id]" class="well hoverwell thumbnail">
                 <h2>{{childEvent?.name}}</h2>
                 <div>Date: {{childEvent?.date}}</div>
 <!--Example of structrual directive and atrribute directive-->

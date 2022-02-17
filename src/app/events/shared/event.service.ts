@@ -3,7 +3,11 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class EventService{
     getEvent(){
-return EVENTS;
+    return EVENTS;
+    }
+
+    getEventById(id:number){
+          return EVENTS.find(e=>e.id===id);
     }
 }
 
@@ -16,7 +20,7 @@ const EVENTS= [
       date: new Date('9/26/2036'),
       time: '10:00 am',
       price: 599.99,
-      imageUrl: '/assets/images/angularconnect-shield.png',
+      imageUrl: '/assets/img/circle Backgound.png',
       location: {
         address: '1057 DT',
         city: 'London',
