@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Error404Component } from './errors/404.component';
+import { CreateEventComponent } from './events/create-event.component';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
+import { EventRouteActivator } from './events/event-details/event-route-activator.service';
 import { EventListComponent } from './events/events-list.component';
 
 const routes: Routes = [
+  {path:'events/new', component:CreateEventComponent},
   {path:'events', component:EventListComponent},
-  {path:'events/:id', component:EventDetailsComponent},
+  {path:'events/:id', component:EventDetailsComponent,canActivate:[EventRouteActivator]},
+  {path:'404', component:Error404Component},
+  //{path:'events/new', component:CreateEventComponent}, create a confusion if we put new path after id so we put this on the top
   {path:'',redirectTo:'/events',pathMatch:'full'}
 ];
 
