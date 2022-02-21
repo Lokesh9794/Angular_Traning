@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EventListComponent } from './events/events-list.component';
+import { EventListComponent} from './events/events-list.component';
 import { EventThumbnailComponent } from './events/event-thumbnail.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { EventService } from './events/shared/event.service';
@@ -12,6 +12,7 @@ import { EventDetailsComponent } from './events/event-details/event-details.comp
 import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
 import { EventRouteActivator } from './events/event-details/event-route-activator.service';
+import {EventsListResolver } from './events/events-list-resolver.service';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,28 @@ import { EventRouteActivator } from './events/event-details/event-route-activato
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [
     EventService,
     ToastrService,
-    EventRouteActivator
+    EventRouteActivator,
+    {provide:'canDeactiveCreateEvent',
+    useValue:checkDirtyState,
+  },
+  EventsListResolver
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
+
+  export function  checkDirtyState(component:CreateEventComponent) {
+    if(component.isDirty)
+    {
+      return window.confirm('you have not save the event, do u really want to exit');
+    }
+    else 
+    return true
+  }
+
