@@ -13,6 +13,8 @@ import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
 import { EventRouteActivator } from './events/event-details/event-route-activator.service';
 import {EventsListResolver } from './events/events-list-resolver.service';
+import {AuthService} from './user/auth.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import {EventsListResolver } from './events/events-list-resolver.service';
     Error404Component,
   ],
   imports: [
+    
     BrowserModule,
     AppRoutingModule,
     
@@ -32,10 +35,11 @@ import {EventsListResolver } from './events/events-list-resolver.service';
   providers: [
     EventService,
     ToastrService,
+    AuthService,
     EventRouteActivator,
     {provide:'canDeactiveCreateEvent',
-    useValue:checkDirtyState,
-  },
+    useValue:checkDirtyState},
+    
   EventsListResolver
   ],
   bootstrap: [AppComponent]

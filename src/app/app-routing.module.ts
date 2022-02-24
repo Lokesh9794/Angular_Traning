@@ -13,7 +13,8 @@ const routes: Routes = [
   {path:'events/:id', component:EventDetailsComponent,canActivate:[EventRouteActivator]},
   {path:'404', component:Error404Component},
   //{path:'events/new', component:CreateEventComponent}, create a confusion if we put new path after id so we put this on the top
-  {path:'',redirectTo:'/events',pathMatch:'full'}
+  {path:'',redirectTo:'/events',pathMatch:'full'},
+  {path:'user',loadChildren:()=> import('./user/user.module').then(m=>m.UsreModule)}
 ];
 
 @NgModule({
